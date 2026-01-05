@@ -1,0 +1,122 @@
+/* -------------------- 최소 reset (공통) -------------------- */
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", sans-serif; }
+
+/* 스크린리더용 라벨 */
+.sr-only{
+  position:absolute;
+  width:1px; height:1px;
+  padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0);
+  white-space:nowrap; border:0;
+}
+
+/* -------------------- Topbar -------------------- */
+.topbar{
+  /* 배치 */
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+
+  /* 크기/여백 */
+  height:64px;
+  padding: 10px 14px;
+
+  /* 상단 고정처럼 보이게(선택) */
+  /* position: sticky; top: 16px; z-index: 10; */
+}
+
+/* 검색 폼: 왼쪽이 길게 차지 */
+.topbar .search{
+  flex: 1;
+  max-width: 1300px;
+  margin-right: 24px;
+
+  display:flex;
+  align-items:center;
+  gap: 10px;
+
+  /* 검색창 자체 스타일 */
+  height:60px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+}
+
+.topbar .search::before{
+  content: none;
+}
+
+/* 돋보기 아이콘 이미지 */
+.topbar .search .search-icon{
+  width: 20px;
+  height: 20px;
+}
+
+.topbar .search input{
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  line-height: 1;
+  padding: 0;
+  color: #2b2f38;
+}
+
+.topbar .search input::placeholder{
+  color: rgba(43,47,56,0.45);
+}
+
+/* 오른쪽 아이콘 영역 */
+.topbar .top-actions{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+}
+
+/* 버튼/링크 공통: 동그란 아이콘 버튼 */
+.topbar .top-actions button,
+.topbar .top-actions a{
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background: rgba(245,247,252,0.9);
+  border: 1px solid rgba(0,0,0,0.06);
+  text-decoration:none;
+  color: #2b2f38;
+
+  box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+  cursor: pointer;
+}
+
+.topbar .top-actions button{
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* 호버/포커스 */
+.topbar .top-actions button:hover,
+.topbar .top-actions a:hover{
+  transform: translateY(-1px);
+}
+
+.topbar .top-actions button:active,
+.topbar .top-actions a:active{
+  transform: translateY(0px);
+}
+
+.topbar .top-actions button:focus-visible,
+.topbar .top-actions a:focus-visible,
+.topbar .search:focus-within{
+  outline: 3px solid rgba(92,142,255,0.25);
+  outline-offset: 2px;
+}
