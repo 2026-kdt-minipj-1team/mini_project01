@@ -1,0 +1,163 @@
+/* src/commons/sidebar/sidebar.css */
+
+/* 기본 변수(프로젝트에 variables.css가 있으면 거기로 옮겨도 OK) */
+:root{
+  --sidebar-w: 240px;
+
+  --bg-soft: #f6f9ff;
+  --bg-white: #ffffff;
+
+  --text: #1f2937;
+  --muted: #6b7280;
+
+  --primary: #3b82f6;        /* 포인트 */
+  --primary-soft: rgba(59,130,246,.12);
+
+  --line: rgba(15, 23, 42, 0.08);
+  --shadow: 0 12px 30px rgba(2, 6, 23, 0.10);
+  --radius: 18px;
+}
+
+/* 사이드바 박스 */
+.sidebar{
+    width: var(--sidebar-w);
+    min-height: 98vh;
+    padding: 18px 16px;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #f3f8ff 0%, #ffffff 55%, #f7fbff 100%);
+    border-right: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    z-index: 0;
+}
+
+/* 로고 */
+.sidebar .logo{
+  margin: 4px 6px 10px;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}
+
+.sidebar .logo a{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.7);
+  border: 1px solid var(--line);
+}
+
+/* 로고 옆 작은 마크 느낌(원) */
+.sidebar .logo a::before{
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--primary);
+  box-shadow: 0 0 0 4px rgba(59,130,246,.15);
+}
+
+/* 네비 */
+.sidebar .nav{
+  flex: 1;
+  padding: 6px;
+}
+
+.sidebar .nav ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+/* 메뉴 링크 */
+.sidebar .nav a{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 12px;
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 600;
+  border: 1px solid transparent;
+  transition: transform .08s ease, background .15s ease, color .15s ease, border-color .15s ease;
+}
+
+/* 왼쪽 아이콘 자리(HTML에 아이콘 없어도 공간만 만들어줌) */
+.sidebar .nav a::before{
+  content: "";
+  width: 28px;
+  height: 28px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.9);
+  border: 1px solid var(--line);
+  box-shadow: 0 6px 16px rgba(2, 6, 23, 0.06);
+  flex: 0 0 28px;
+}
+
+/* hover */
+.sidebar .nav a:hover{
+  color: var(--text);
+  background: rgba(255,255,255,.75);
+  border-color: var(--line);
+  transform: translateY(-1px);
+}
+
+/* 활성(현재 페이지) */
+.sidebar .nav a[aria-current="page"]{
+  color: var(--primary);
+  background: var(--primary-soft);
+  border-color: rgba(59,130,246,.25);
+}
+
+.sidebar .nav a[aria-current="page"]::before{
+  background: rgba(59,130,246,.16);
+  border-color: rgba(59,130,246,.25);
+}
+
+/* 사이드바 하단(로그아웃) */
+.sidebar .sidebar-footer{
+  padding: 8px 6px 2px;
+}
+
+.sidebar .sidebar-footer a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 12px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: 700;
+  color: #ef4444;
+  background: rgba(255, 255, 255, .85);
+  border: 1px solid var(--line);
+  transition: background .15s ease, transform .08s ease;
+}
+
+.sidebar .sidebar-footer a:hover{
+  background: rgba(239, 68, 68, .10);
+  transform: translateY(-1px);
+}
+
+/* 접근성: 혹시 sr-only 쓰면 */
+.sr-only{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border-width: 0;
+}

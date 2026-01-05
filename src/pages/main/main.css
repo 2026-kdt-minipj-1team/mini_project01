@@ -1,0 +1,177 @@
+/* ===== main 페이지 전용 섹션 간격 ===== */
+.dashboard{
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ===== 카드 내부 여백/타이포 ===== */
+.card{
+  padding: 24px; /* global.css 덮어쓰기 */
+}
+
+.card h1, .card h2, .card h3{
+  margin: 0 0 14px;
+}
+
+.card p{
+  margin: 0 0 12px;
+}
+
+/* 카드 안 마지막 요소 아래 여백 제거 */
+.card > *:last-child{
+  margin-bottom: 0;
+}
+
+/* ===== row-top: welcome + todo ===== */
+.row-top{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.row-top .card{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== row-bottom ===== */
+.row-bottom{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto auto;
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* 북마크: 왼쪽 위 */
+#bookmark{
+  grid-column: 1;
+  grid-row: 1;
+}
+
+/* 데일리 퀴즈: 왼쪽 아래 (북마크 밑) */
+#Quiz{
+  grid-column: 1;
+  grid-row: 2;
+}
+
+/* 캘린더: 오른쪽 전체 영역 (위+아래 합침) */
+#calendar{
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+.row-bottom .card{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== 환영 카드 ===== */
+#welcome-inner {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 18px;
+    align-items: center;
+}
+
+#welcome-text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#welcome-text p {
+    color: #aaaaac;
+}
+
+#welcome-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+#welcome-items > div {
+    background: rgba(255,255,255,0.65);
+    border: 1px solid rgba(120,160,255,0.14);
+    border-radius: 14px;
+    padding: 12px 14px;
+    box-shadow: 0 8px 18px rgba(17,24,39,0.06);
+}
+
+#welcome-img {
+    width: 220px;
+    height: auto;
+    object-fit: contain;
+    justify-self: end;
+}
+
+/* ===== Quiz 카드 ===== */
+#Quiz-sub-title {
+    color: #aaaaac;
+    font-weight: 600;
+}
+
+#Quiz > div {
+    margin: 10px 0;
+    padding: 24px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.75);
+    border: 1px solid rgba(120,160,255,0.12);
+    box-shadow: 0 8px 18px rgba(17,24,39,0.06);
+}
+
+#Quiz > div p {
+    font-size: 16px;
+}
+
+#Quiz button {
+    display: block;
+    width: 260px;
+    height: 60px;
+    margin: 16px auto 0;
+
+    color: #ffffff;
+    background-color: #78A7ED;
+    border-radius: 20px;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#Quiz button:hover {
+    background-color: #3168ba;
+    transform: translateY(-2px);
+    border: 2px solid #78A7ED;
+}
+
+/* ===== ToDo 카드 ===== */
+#todo-list{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#todo-list li{
+  margin: 12px 0;
+}
+
+#todo-add-btn {
+    width: 100px;
+    height: 30px;
+    border-radius: 8px;
+
+    background-color: #78A7ED;
+    color: #ffffff;
+    border: none;
+}
+
+#todo-add-btn:hover {
+    background-color: #3168ba;
+    transform: translateY(-2px);
+    border: 2px solid #78A7ED;
+}
