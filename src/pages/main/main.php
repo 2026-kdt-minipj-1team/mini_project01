@@ -1,3 +1,5 @@
+<?php include "../dailyquiz/dailyQuestion.php" ?>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -113,8 +115,8 @@
                         <h2>Daily Quiz</h2>
                         <p id="Quiz-sub-title">오늘의 Daily Quiz 는??</p>
                         <div>
-                            <p>[문제종류] 데이터 베이스에서 읽어와서 출력</p>
-                            <p>문제에 대한 설명이 들어가는건데 이거도 DB에서 읽어와서 출력</p>
+                            <p>[문제종류] <?= $feorbe ?> </p> <!-- questions 테이블  question_number, questions_type 출력-->
+                            <p> <strong> <?= $qna['question'] ?> <strong> </p> <!-- questions 테이블 question 출력 -->
                             <button type="button">Solve Now</button>
                         </div>
                     </article> <!-- 퀴즈 카드 article 종료 -->
