@@ -1,4 +1,5 @@
 <?php include "../dailyquiz/dailyQuestion.php" ?>
+<?php include "../dailyquiz/useranswer.php" ?>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -19,6 +20,11 @@
     <!-- -------------------- main 페이지 전용 js, CSS -------------------- -->
     <link rel="stylesheet" href="./main.css" /> <!-- main 페이지 전용 CSS -->
     <script src="./main.js" defer></script> <!-- main 페이지 전용 JS -->
+    <script>
+        function show() {
+            document.getElementById("input").style.display = "block";
+        }
+    </script>
 </head>
 
 <body>
@@ -34,7 +40,7 @@
                     <li><a href="../main/main.html" aria-current="page">대시보드</a></li>
                     <li><a href="../planner/planner.html">일정관리</a></li>
                     <li><a href="../bookmark/bookmark.html">북마크</a></li>
-                    <li><a href="../dailyquiz/dailyquiz.html">데일리 퀴즈</a></li>
+                    <li><a href="../dailyquiz/dailyquiz.php">데일리 퀴즈</a></li>
                     <li><a href="../setting/setting.html">설정</a></li>
                 </ul>
             </nav>
@@ -117,7 +123,21 @@
                         <div>
                             <p>[문제종류] <?= $feorbe ?> </p> <!-- questions 테이블  question_number, questions_type 출력-->
                             <p> <strong> <?= $qna['question'] ?> <strong> </p> <!-- questions 테이블 question 출력 -->
-                            <button type="button">Solve Now</button>
+                            <form action="../dailyquiz/answer_process.php" method="post">
+
+                                <input type="hidden" name="question_number" value="<?= $qna['question_number'] ?>">
+                                <!-- 처음에는 숨겨진 입력창 -->
+                                <div id="input" style="display:none;">
+                                    <input type="text" name="answer" placeholder="답을 입력하세요">
+                                    <button type="submit">제출하기</button>
+                                </div>
+
+                                <!-- Solve Now 버튼 -->
+                                <button type="button" onclick="show()">답변하기</button>
+                            </form>
+
+
+
                         </div>
                     </article> <!-- 퀴즈 카드 article 종료 -->
                     <article class="card" id="calendar"> <!-- 캘린더 카드 article 시작 -->
