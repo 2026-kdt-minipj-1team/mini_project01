@@ -31,7 +31,7 @@
         <!-- ------------------------ 왼쪽 사이드바 ------------------------ -->
         <aside class="sidebar" aria-label="사이드 메뉴"> <!-- aside 시작 -->
             <h1 class="logo">
-                <a href="../main/main.html">DevNest</a>
+                <a href="../main/main.php">DevNest</a>
             </h1>
 
             <nav class="nav">
@@ -75,7 +75,7 @@
                         <div id="welcome-inner">
                             <div id="welcome-text">
                                 <h1>데일리 퀴즈 모음</h1>
-                                <p>오늘도 한 걸음씩 성장해요!!</p>
+                                <p>오늘도 한 걸음씩 성장해요!!</p> <br><br>
                                 <div>
                                     <?php
                                     $dbcon = mysqli_connect('localhost', 'root', '', 'devnest');
@@ -95,20 +95,20 @@
 
                                     while ($row = mysqli_fetch_assoc($result)) {
 
-                                        echo "문제번호: " . $row['question_number'] . "<br>";
+                                        echo "<span style='color:DodgerBlue;'> <strong> 문제번호:  " . $row['question_number'] . "</strong></span> <br>";
 
                                         if ((int) $row['question_type'] === 1) {
-                                            echo "백엔드<br>";
+                                            echo "<span style='color:MediumSeaGreen'>백엔드</span> <br>";
                                         } else {
-                                            echo "프론트엔드<br>";
+                                            echo "<span style='color:DarkOrange'>프론트엔드</span> <br>";
                                         }
 
                                         echo "<strong>" . $row['question'] . "</strong><br>";
 
                                         if ($row['user_answer'] !== null) {
-                                            echo "내 답변: " . $row['user_answer'] . "<br>";
+                                            echo "<span style='color:RoyalBlue;'>  내 답변: <strong> " . $row['user_answer'] . "</strong> </span> <br>";
                                         } else {
-                                            echo "아직 답변 없음<br>";
+                                            echo "<span style='color:#666666'>아직 답변 없음 </span> <br>";
                                         }
 
                                         echo "<hr>";

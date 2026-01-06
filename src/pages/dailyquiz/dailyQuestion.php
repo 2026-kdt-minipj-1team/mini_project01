@@ -12,9 +12,9 @@
 
     //question_type이 1이면 백엔드 문제,  0이면 프론트엔드 문제
     if ($qna['question_type'] == '1') {
-        $feorbe = "백엔드";
+        $feorbe = "<span style='color:MediumSeaGreen'> 백엔드 </span>";
     } else {
-        $feorbe = "프론트엔드";
+        $feorbe = "<span style='color:DarkOrange'> 프론트엔드 </span>";
     }
 
     
