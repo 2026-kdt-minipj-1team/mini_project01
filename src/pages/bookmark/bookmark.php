@@ -1,99 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-    <title>북마크</title>
-    <meta charset = 'utf8'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>북마크 관리</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-     <!-- -------------------- 공통 CSS (예: src/commons/기능이름.css) -------------------- -->
     <link rel="stylesheet" href="../../commons/global.css" />
     <link rel="stylesheet" href="../../commons/sidebar/sidebar.css" />
     <link rel="stylesheet" href="../../commons/topbar/topbar.css" />
+    <link rel="stylesheet" href="./dashboard-bookmark.css" />
 
-     <link rel="stylesheet" href="./dashboard-bookmark.css" /> <!-- main 페이지 전용 CSS -->
-   
- <style>
-.bookmark-container {
-    display: flex;       
-    flex-wrap: wrap;     
-    gap: 20px;          
-    align-items: center; 
-}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+            padding: 20px;
+        }
 
-.bookmark-item {
-    display: flex;
-    flex-direction: column; /* 이미지 위, 텍스트 아래 */
-    align-items: center;    /* 가운데 정렬 */
-}
-</style>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f7fa;
-    padding: 20px;
-  }
+        /* 북마크 제목 */
+        .bookmark-title {
+            display: inline-block;
+            background-color: #e0f0ff;
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
 
-  /* 북마크 제목 */
-  .bookmark-title {
-    display: inline-block;
-    background-color: #e0f0ff;
-    padding: 15px 500px;
-    border-radius: 15px;
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
+        .bookmark-main {
+            background-color: #e0f0ff;
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
 
-.bookmark-main {
-    display: inline-block;
-    background-color: #e0f0ff;
-    padding: 20px 20px;
-    border-radius: 15px;
-    width: 1000px;   /* 박스 가로 길이 */
-    height: 450px;
-    margin-bottom: 20px;
-  }
-  
+        .bookmark-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
 
-  /* 링크 컨테이너 */
-  .bookmark-links {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+        .bookmark-actions button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #4a90e2;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
 
-  /* 각 링크 */
-  .bookmark-link {
-    display: block;
-    background-color: #ffffff;
-    padding: 12px 20px;
-    border-radius: 12px;
-    text-decoration: none;
-    color: #0073e6;
-    border: 1px solid #cce0ff;
-    transition: background-color 0.2s, transform 0.2s;
-  }
+        .bookmark-actions button:hover {
+            background-color: #357ac8;
+        }
 
-  .bookmark-link:hover {
-    background-color: #d0e7ff;
-    transform: translateY(-2px);
-  }
-</style>
-<style>
-    a {text-decoration: none;}
+        .bookmark-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .bookmark-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 250px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .bookmark-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .bookmark-item a {
+            text-decoration: none;
+            color: #0073e6;
+            font-weight: bold;
+        }
+
+        .bookmark-item a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
-    <body>
+<body>
     <div class="layout">
         <!-- ------------------------ 왼쪽 사이드바 ------------------------ -->
-        <aside class="sidebar" aria-label="사이드 메뉴"> <!-- aside 시작 -->
+        <aside class="sidebar" aria-label="사이드 메뉴">
             <h1 class="logo">
                 <a href="../main/main.html">DevNest</a>
             </h1>
 
             <nav class="nav">
                 <ul>
-                    <li><a href="../main/main.html" >대시보드</a></li>
+                    <li><a href="../main/main.html">대시보드</a></li>
                     <li><a href="../planner/planner.html">일정관리</a></li>
                     <li><a href="../bookmark/bookmark.php" aria-current="page">북마크</a></li>
                     <li><a href="../dailyquiz/dailyquiz.html">데일리 퀴즈</a></li>
@@ -104,99 +117,83 @@
             <div class="sidebar-footer">
                 <a href="../login/login.html">로그아웃</a>
             </div>
-        </aside> <!-- aside 종료 -->
+        </aside>
 
         <!-- ------------------------ 메인 콘텐츠 ------------------------ -->
         <main>
-            <!-- 탑바 -->
-            <header class="topbar"> <!-- header 시작 -->
+            <header class="topbar">
                 <form class="search" role="search">
-                    <img class="search-icon" src="../../../public/images/iconSearch.png" alt="돋보기 아이콘"
-                        aria-hidden="true">
+                    <img class="search-icon" src="../../../public/images/iconSearch.png" alt="돋보기 아이콘" aria-hidden="true">
                     <input id="search" type="search" placeholder="Search..." />
                 </form>
-
                 <div class="top-actions">
                     <a href="../setting/setting.html" aria-label="메세지">✉️</a>
                     <button type="button" aria-label="알림">🔔</button>
                     <a href="../setting/setting.html" aria-label="설정">⚙️</a>
                     <a href="../setting/setting.html" aria-label="프로필">👤</a>
                 </div>
-            </header> <!-- header 종료 -->
-            <br>
+            </header>
 
-            <div class="bookmark-title">북마크</div>
+            <div class="bookmark-title">🔖 북마크</div>
 
-            <!-- 대시보드 -->
-   <div class="dashboard" id="dashboard-bookmark" role="main">
-   <!-- 확인을 누르면 데베에 ㅈ저장 후에 사이트에 내용보이게 하기 -->
-    
-   <form action="./book.html" enctype = multipart/form-data method = 'post'>
-    <input type = 'submit' name = 'plus' value = '+'> &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-   </form>
+            <div class="bookmark-main">
+                <div class="bookmark-actions">
+                    <form action="./book.html" enctype="multipart/form-data" method="post">
+                        <button type="submit" name="plus">+ 북마크 추가</button>
+                    </form>
+                    <form action="./book.html" method="post">
+                        <button type="submit" name="delete">- 북마크 삭제</button>
+                    </form>
+                </div>
 
-   <form>
-      <input type = 'submit' name = '삭제' value = '-'> <br> <br> <br>
-      </form>
+                <div class="bookmark-container">
+                    <?php
+                    $dbconn = mysqli_connect('localhost', 'root', '');
+                    mysqli_select_db($dbconn, 'book');
 
+                    if (isset($_POST['site'])) {
+                        $site = trim($_POST['site']);
+                        $sitename = trim($_POST['sitename']);
+                        $images = $_FILES['image'];
 
-   <div class="bookmark-main">
-    <div class="bookmark-container">
-<?php
-   $dbconn = mysqli_connect('localhost', 'root', '');
-        mysqli_select_db($dbconn, 'book');
+                        if ($site == '' || $sitename == '') {
+                            echo "<p style='color:red;'>사이트 주소와 이름을 입력해주세요.</p>";
+                        } else {
+                            $dir = '../../../public/images/';
+                            $file_name = basename($_FILES['image']['name']);
+                            $imagepath = $dir . $file_name;
 
-if(isset($_POST['site'])){
+                            // 중복 체크
+                            $check_query = "SELECT * FROM bookmark WHERE site='$site'";
+                            $check_result = mysqli_query($dbconn, $check_query);
 
-    $site = trim($_POST['site']);       // 앞뒤 공백 제거
-    $sitename = trim($_POST['sitename']);
-    $images = $_FILES['image'];
+                            if (mysqli_num_rows($check_result) > 0) {
+                                echo "<p style='color:red;'>이미 등록된 사이트입니다.</p>";
+                            } else {
+                                // DB 삽입
+                                $query = "INSERT INTO bookmark VALUES ('$sitename', '$site', '$imagepath')";
+                                $result = mysqli_query($dbconn, $query);
 
-    // 공백일 경우 처리
-    if($site == '' || $sitename == ''){
-        echo "<p style='color:red;'>사이트 주소와 이름을 입력해주세요.</p>";
-    } else {
-        $dir = '../../../public/images/';
-        $file_name = basename($_FILES['image']['name']);
-        $imagepath = $dir.$file_name;
+                                // 이미지 업로드
+                                move_uploaded_file($_FILES['image']['tmp_name'], $imagepath);
+                            }
+                        }
 
-        // 중복 체크
-        $check_query = "SELECT * FROM bookmark WHERE site='$site'";
-        $check_result = mysqli_query($dbconn, $check_query);
+                        $delete_query = "DELETE FROM bookmark";
 
-        if(mysqli_num_rows($check_result) > 0){
-            echo "<p style='color:red;'>이미 등록된 사이트입니다.</p>";
-        } else {
-            // DB 삽입
-            $query = "INSERT INTO bookmark VALUES ('$sitename', '$site', '$imagepath')";
-            $result = mysqli_query($dbconn, $query);
-
-            // 이미지 업로드
-            move_uploaded_file($_FILES['image']['tmp_name'], $imagepath);
-        }
-    }
-
-   $delete_query = "DELETE FROM bookmark"; 
-
-    // DB에서 모든 북마크 출력
-    $end = mysqli_query($dbconn, "SELECT * FROM bookmark");
-    while ($row = mysqli_fetch_assoc($end)) {
-        echo "<div class='bookmark-links'>";
-        echo "<div class='bookmark-item'>";
-
-        echo "<a href='{$row['site']}' target='_blank'>
-        <img src='{$row['image_path']}' width='80'>{$row['sitename']} </a>";
-        echo "</div>";
-        echo "</div>";
-    }
-}
-?>
-   </div>
-   </div>
-   </div>
+                        // DB에서 모든 북마크 출력
+                        $end = mysqli_query($dbconn, "SELECT * FROM bookmark");
+                        while ($row = mysqli_fetch_assoc($end)) {
+                            echo "<div class='bookmark-item'>";
+                            echo "<a href='{$row['site']}' target='_blank'>";
+                            echo "<img src='{$row['image_path']}' alt='대표 이미지'>{$row['sitename']}</a>";
+                            echo "</div>";
+                        }
+                    }
+                    ?>
+                </div>
+            </div>
+        </main>
     </div>
-    </main>
-    </div>
-    </body>
-    
-    </html>
+</body>
+</html>
