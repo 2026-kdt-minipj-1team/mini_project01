@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>미니프로젝트(26.01.05 ~ 26.01.07)</title>
+
+    <style>
+        #f1 {
+            width: 400px;
+            margin: 60px auto;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        td {
+            padding: 5px;
+        }
+
+        .label {
+            width: 80px;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+
+<form action="/mini_project01/src/pages/login/login_process.php" method="post">
+    <fieldset id="f1">
+        <legend>로그인</legend>
+
+        <table>
+            <tr>
+                <td class="label">ID :</td>
+                <td>
+                    <input type="text" name="email" >
+                </td>
+            </tr>
+
+            <tr>
+                <td class="label">PW :</td>
+                <td>
+                    <input type="password" name="pw" >
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="로그인">
+                </td>
+            </tr>
+        </table>
+
+    </fieldset>
+</form>
+
+</body>
+</html>
