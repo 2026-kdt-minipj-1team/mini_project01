@@ -29,15 +29,13 @@
             font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", Arial, sans-serif;
             color: var(--text);
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            
             padding: 24px;
             background:
                 radial-gradient(1200px 600px at 10% 10%, var(--bg2), transparent 60%),
                 radial-gradient(900px 500px at 90% 30%, var(--bg1), transparent 55%),
                 linear-gradient(120deg, #f6fbff, #fff);
-            overflow: hidden;
+            overflow: auto;
         }
 
         /* 배경 장식(선택) */
@@ -81,7 +79,7 @@
             box-shadow: var(--shadow);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            overflow: hidden;
+            overflow: auto;
             position: relative;
         }
 
