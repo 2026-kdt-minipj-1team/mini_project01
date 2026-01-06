@@ -1,3 +1,50 @@
+<?php
+$dbconn = mysqli_connect('localhost', 'root', '');
+mysqli_select_db($dbconn, 'book');
+
+// 북마크 추가 처리
+if (isset($_POST['site'])) {
+    $site = trim($_POST['site']);
+    $sitename = trim($_POST['sitename']);
+    $images = $_FILES['image'];
+
+    if ($site == '' || $sitename == '') {
+        echo "<p style='color:red;'>사이트 주소와 이름을 입력해주세요.</p>";
+    } else {
+        $dir = '../../../public/images/';
+        $file_name = basename($_FILES['image']['name']);
+        $imagepath = $dir . $file_name;
+
+        // 중복 체크
+        $check_query = "SELECT * FROM bookmark WHERE site='$site'";
+        $check_result = mysqli_query($dbconn, $check_query);
+
+        if (mysqli_num_rows($check_result) > 0) {
+            echo "<p style='color:red;'>이미 등록된 사이트입니다.</p>";
+        } else {
+            // DB 삽입
+            $query = "INSERT INTO bookmark (sitename, site, image_path) VALUES ('$sitename', '$site', '$imagepath')";
+            $result = mysqli_query($dbconn, $query);
+
+            // 이미지 업로드
+            move_uploaded_file($_FILES['image']['tmp_name'], $imagepath);
+        }
+    }
+}
+
+// 북마크 삭제 처리
+if (isset($_POST['delete_site'])) {
+    $delete_site = $_POST['delete_site'];
+
+    // DB에서 해당 사이트 삭제
+    $delete_query = "DELETE FROM bookmark WHERE site = '$delete_site'";
+    mysqli_query($dbconn, $delete_query);
+}
+
+// DB에서 모든 북마크 출력
+$end = mysqli_query($dbconn, "SELECT * FROM bookmark");
+?>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -94,6 +141,18 @@
         .bookmark-item a:hover {
             text-decoration: underline;
         }
+
+        .delete-button {
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .delete-button:hover {
+            background-color: #ff4d4d;
+        }
     </style>
 </head>
 <body>
@@ -141,54 +200,21 @@
                     <form action="./book.html" enctype="multipart/form-data" method="post">
                         <button type="submit" name="plus">+ 북마크 추가</button>
                     </form>
-                    <form action="./book.html" method="post">
-                        <button type="submit" name="delete">- 북마크 삭제</button>
-                    </form>
                 </div>
 
                 <div class="bookmark-container">
                     <?php
-                    $dbconn = mysqli_connect('localhost', 'root', '');
-                    mysqli_select_db($dbconn, 'book');
-
-                    if (isset($_POST['site'])) {
-                        $site = trim($_POST['site']);
-                        $sitename = trim($_POST['sitename']);
-                        $images = $_FILES['image'];
-
-                        if ($site == '' || $sitename == '') {
-                            echo "<p style='color:red;'>사이트 주소와 이름을 입력해주세요.</p>";
-                        } else {
-                            $dir = '../../../public/images/';
-                            $file_name = basename($_FILES['image']['name']);
-                            $imagepath = $dir . $file_name;
-
-                            // 중복 체크
-                            $check_query = "SELECT * FROM bookmark WHERE site='$site'";
-                            $check_result = mysqli_query($dbconn, $check_query);
-
-                            if (mysqli_num_rows($check_result) > 0) {
-                                echo "<p style='color:red;'>이미 등록된 사이트입니다.</p>";
-                            } else {
-                                // DB 삽입
-                                $query = "INSERT INTO bookmark VALUES ('$sitename', '$site', '$imagepath')";
-                                $result = mysqli_query($dbconn, $query);
-
-                                // 이미지 업로드
-                                move_uploaded_file($_FILES['image']['tmp_name'], $imagepath);
-                            }
-                        }
-
-                        $delete_query = "DELETE FROM bookmark";
-
-                        // DB에서 모든 북마크 출력
-                        $end = mysqli_query($dbconn, "SELECT * FROM bookmark");
-                        while ($row = mysqli_fetch_assoc($end)) {
-                            echo "<div class='bookmark-item'>";
-                            echo "<a href='{$row['site']}' target='_blank'>";
-                            echo "<img src='{$row['image_path']}' alt='대표 이미지'>{$row['sitename']}</a>";
-                            echo "</div>";
-                        }
+                    // DB에서 모든 북마크 출력
+                    while ($row = mysqli_fetch_assoc($end)) {
+                        echo "<div class='bookmark-item'>";
+                        echo "<a href='{$row['site']}' target='_blank'>";
+                        echo "<img src='{$row['image_path']}' alt='대표 이미지'>{$row['sitename']}</a>";
+                        // 삭제 버튼 추가
+                        echo "<form action='./bookmark.php' method='post'>";
+                        echo "<input type='hidden' name='delete_site' value='{$row['site']}'>";
+                        echo "<button type='submit' class='delete-button'>삭제</button>";
+                        echo "</form>";
+                        echo "</div>";
                     }
                     ?>
                 </div>
