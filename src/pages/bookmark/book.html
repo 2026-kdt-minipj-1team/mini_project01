@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>북</title>
+    <meta charset = 'utf8'>
+
+    
+        <style>
+.bookmark-title {
+    display: inline-block;
+    background-color: #e0f0ff;
+    padding: 15px 500px;
+    border-radius: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  .bookmark-main {
+    display: inline-block;
+    background-color: #e0f0ff;
+    padding: 10px 10px;  /* 오른쪽 패딩 너무 크면 내용 밀림, 적당히 줄임 */
+    border-radius: 15px;
+    font-size: 15px;
+    font-weight: bold;
+    width: 1000px;   /* 박스 가로 길이 */
+    height: 200px;
+    margin-bottom: 10px;
+    text-align: left;   /* 내용 왼쪽 정렬 */
+}
+
+    </style>
+    
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <!-- -------------------- 공통 CSS (예: src/commons/기능이름.css) -------------------- -->
+    <link rel="stylesheet" href="../../commons/global.css" />
+    <link rel="stylesheet" href="../../commons/sidebar/sidebar.css" />
+    <link rel="stylesheet" href="../../commons/topbar/topbar.css" />
+
+     <link rel="stylesheet" href="./dashboard-bookmark.css" /> <!-- main 페이지 전용 CSS -->
+    </head>
+
+    <body>
+    <div class="layout">
+        <!-- ------------------------ 왼쪽 사이드바 ------------------------ -->
+        <aside class="sidebar" aria-label="사이드 메뉴"> <!-- aside 시작 -->
+            <h1 class="logo">
+                <a href="../main/main.html">DevNest</a>
+            </h1>
+
+            <nav class="nav">
+                <ul>
+                    <li><a href="../main/main.html">대시보드</a></li>
+                    <li><a href="../planner/planner.html">일정관리</a></li>
+                    <li><a href="../bookmark/bookmark.html" aria-current="page">북마크</a></li>
+                    <li><a href="../dailyquiz/dailyquiz.html">데일리 퀴즈</a></li>
+                    <li><a href="../setting/setting.html">설정</a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="../login/login.html">로그아웃</a>
+            </div>
+        </aside> <!-- aside 종료 -->
+
+        <!-- ------------------------ 메인 콘텐츠 ------------------------ -->
+        <main>
+            <!-- 탑바 -->
+            <header class="topbar"> <!-- header 시작 -->
+                <form class="search" role="search">
+                    <img class="search-icon" src="../../../public/images/iconSearch.png" 
+                         alt="돋보기 아이콘" aria-hidden="true">
+                    <input id="search" type="search" placeholder="Search..." />
+                </form>
+
+                <div class="top-actions">
+                    <a href="../setting/setting.html" aria-label="메세지">✉️</a>
+                    <button type="button" aria-label="알림">🔔</button>
+                    <a href="../setting/setting.html" aria-label="설정">⚙️</a>
+                    <a href="../setting/setting.html" aria-label="프로필">👤</a>
+                </div>
+            </header> <!-- header 종료 -->
+            <br>
+
+            <!-- 대시보드 -->
+            <div class="dashboard" id="dashboard-bookmark" role="main">
+
+            <div class="bookmark-title">주소 입력</div>
+   <!-- 확인을 누르면 데베에 ㅈ저장 후에 사이트에 내용보이게 하기 -->
+    
+            <div class="bookmark-main">
+            <form action = './bookmark.php' enctype = multipart/form-data method = 'post'>
+                  주소 입력하기: <input type = 'text' name = 'site'>  &nbsp; --주소를 처음부터 끝까지 적어주세요--<br>
+                  사이트 이름 입력하기: <input type = 'text' name = 'sitename'> <br>
+                  사진 넣기: <input type = 'file' name = 'image'>
+                  <br><br>
+            <input type = 'submit' name = 'check' value = '확인'  > &nbsp;
+
+            <form action = './bookmark.php'>
+            <input type = 'submit' name = 'close' value = '닫기' >
+            </form>
+
+            </form>
+            </div>
+            </div>
+            </div>
+        </main>
+    </div>
+</body>
+    
+</html>
