@@ -364,7 +364,7 @@
 
                 <div class="tip">
                     <span class="bulb">💡</span>
-                    <!-- 추후 자동으로 날짜를 확인해서 바뀌게 구현 예정-->
+                    <!-- 추후 새로고침할때마다 자동으로 바뀌게 하기-->
                     <span><b>오늘의 한 줄</b> · 딱 하나의 기능만 완성해도 성공!</span>
                 </div>
             </div>
@@ -380,7 +380,7 @@
             <p class="desc">이메일과 비밀번호를 입력해 주세요.</p>
 
             <!--action / method 유지 -->
-            <form action="/mini_project01/src/pages/login/login_process.php" method="post">
+            <form action="../login/login_process.php" method="post">
                 <label for="email">이메일</label>
                 <input class="input" id="email" type="text" name="email" placeholder="이메일을 입력해주세요"
                     autocomplete="username" />
@@ -413,7 +413,7 @@
                     </a>
                 </div>
 
-                <div class="foot"> 아직 계정이 없으신가요? <a href="/mini_project01/src/pages/join/join.html">회원가입</a>
+                <div class="foot"> 아직 계정이 없으신가요? <a href="../join/join.html">회원가입</a>
                 </div>
             </form>
         </section>
