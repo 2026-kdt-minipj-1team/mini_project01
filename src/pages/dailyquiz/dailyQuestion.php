@@ -17,5 +17,6 @@
         $feorbe = "프론트엔드";
     }
 
+    
     mysqli_close($dbcon);  
 ?>

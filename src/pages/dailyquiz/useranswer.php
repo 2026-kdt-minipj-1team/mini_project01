@@ -1,12 +1,14 @@
-<!-- 유저 답변을 db에 저장 -->
+<!-- 유저 답변을 db에서 불러옴 -->
 <?php
+
+
     $dbcon = mysqli_connect('localhost', 'root', '');
 
     mysqli_select_db($dbcon, 'devnest');
 
-    $query = ($dbcon, "저장하는 명령어");
+    $query = "select * from user_answers";
 
-    $result = my_sqli_query($dbcon, $query);
+    $result = mysqli_query($dbcon, $query);
 
     $row = mysqli_fetch_array($result);
 
