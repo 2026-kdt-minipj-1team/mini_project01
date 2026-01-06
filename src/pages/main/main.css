@@ -175,3 +175,26 @@
     transform: translateY(-2px);
     border: 2px solid #78A7ED;
 }
+
+/* ===== calendar 카드 ===== */
+#calendar-card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 8px 18px rgba(17,24,39,0.06);
+}
+
+#calendar-card input {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  background-color: #EEF3FC;
+  color: #aaaaac;
+}
+
+#calendar-table {
+  width: 90%;
+  text-align: center;
+  margin: 5%;
+  padding: 4% 4%;
+}

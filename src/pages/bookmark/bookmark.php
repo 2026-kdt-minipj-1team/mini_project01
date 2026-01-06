@@ -1,6 +1,3 @@
-<?php
-header("Location: bookmark.php");
-exit;?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -138,7 +135,7 @@ exit;?>
     <input type = 'submit' name = 'plus' value = '+'> &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
    </form>
 
-   <from>
+   <form>
       <input type = 'submit' name = '삭제' value = '-'> <br> <br> <br>
       </form>
 
