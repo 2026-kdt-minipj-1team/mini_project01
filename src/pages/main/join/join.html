@@ -1,0 +1,93 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>미니프로젝트</title>
+
+    <style>
+        #f1 {
+            width: 500px;
+            margin: 50px auto;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        td {
+            padding: 5px;
+        }
+
+        .label {
+            width: 100px;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+
+<form action="/mini_project01/src/pages/join/join_process.php" method="post">
+    <fieldset id="f1">
+        <legend>회원가입</legend>
+
+        <table>
+            <tr>
+                <td class="label">ID :</td>
+                <td>
+                    <input type="text" name="email" required>
+                    (이메일로 작성해주세요.)
+                </td>
+            </tr>
+
+            <tr>
+                <td class="label">PW :</td>
+                <td>
+                    <input type="password" name="pw" required>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="label">이름 :</td>
+                <td>
+                    <input type="text" name="name">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="label">전화번호 :</td>
+                <td>
+                    <input type="text" name="phone">
+                    (-빼고 입력하세요.)
+                </td>
+            </tr>
+
+            <tr>
+                <td class="label">성별 :</td>
+                <td>
+                    <input type="radio" name="gender" value="male"> 남성
+                    <input type="radio" name="gender" value="female"> 여성
+                </td>
+            </tr>
+
+            <tr>
+                <td class="label">생년월일 :</td>
+                <td>
+                    <input type="text" name="birth">
+                    (ex. 001005)
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="회원가입">
+                </td>
+            </tr>
+        </table>
+
+    </fieldset>
+</form>
+
+</body>
+</html>
