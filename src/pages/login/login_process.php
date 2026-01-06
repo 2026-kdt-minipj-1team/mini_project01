@@ -42,7 +42,7 @@ session_start();
        //db연결 해제
        mysqli_close($abcon);
     ?>
-    <meta http-equiv = "refresh" content="3; url = '/mini_project01/src/pages/main/main.html'">
+    <meta http-equiv = "refresh" content="3; url = '../main/main.php'">
 </body>
 
 </html>
