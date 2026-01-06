@@ -121,7 +121,7 @@
                         <h2>Daily Quiz</h2>
                         <p id="Quiz-sub-title">오늘의 Daily Quiz 는??</p>
                         <div>
-                            <p>[문제종류] <?= $feorbe ?> </p> <!-- questions 테이블  question_number, questions_type 출력-->
+                            <p style="color:DodgerBlue;>">[문제종류] <strong> <?= $feorbe ?> </strong> </p> <!-- questions 테이블  question_number, questions_type 출력-->
                             <p> <strong> <?= $qna['question'] ?> <strong> </p> <!-- questions 테이블 question 출력 -->
                             <form action="../dailyquiz/answer_process.php" method="post">
 
