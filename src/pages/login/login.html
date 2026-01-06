@@ -1,61 +1,422 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <title>미니프로젝트(26.01.05 ~ 26.01.07)</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DevNest - 로그인</title>
 
     <style>
-        #f1 {
-            width: 400px;
-            margin: 60px auto;
+        :root {
+            --bg1: #e8f0ff;
+            --bg2: #f9ecff;
+            --card: rgba(255, 255, 255, .72);
+            --stroke: rgba(255, 255, 255, .55);
+            --text: #1f2a44;
+            --muted: #6b7a99;
+            --primary: #5b7cff;
+            --primary2: #79c0ff;
+            --shadow: 0 20px 60px rgba(30, 60, 120, .18);
+            --radius: 24px;
         }
 
-        table {
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", Arial, sans-serif;
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background:
+                radial-gradient(1200px 600px at 10% 10%, var(--bg2), transparent 60%),
+                radial-gradient(900px 500px at 90% 30%, var(--bg1), transparent 55%),
+                linear-gradient(120deg, #f6fbff, #fff);
+            overflow: hidden;
+        }
+
+        /* 배경 장식(선택) */
+        .blob {
+            position: fixed;
+            inset: auto;
+            width: 520px;
+            height: 520px;
+            border-radius: 999px;
+            filter: blur(60px);
+            opacity: .55;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .blob.b1 {
+            left: -140px;
+            top: -140px;
+            background: #b8ccff;
+        }
+
+        .blob.b2 {
+            right: -180px;
+            bottom: -180px;
+            background: #f0b8ff;
+        }
+
+        .wrap {
+            width: min(980px, 100%);
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 24px;
+            align-items: stretch;
+            z-index: 1;
+        }
+
+        .panel {
+            border-radius: var(--radius);
+            background: var(--card);
+            border: 1px solid var(--stroke);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 왼쪽 소개/일러스트 영역 */
+        .hero {
+            padding: 34px 34px 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 480px;
+            background:
+                radial-gradient(900px 500px at 30% 20%, rgba(91, 124, 255, .18), transparent 60%),
+                radial-gradient(800px 450px at 70% 80%, rgba(121, 192, 255, .18), transparent 55%);
+        }
+
+        .brand {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            font-weight: 800;
+            letter-spacing: .2px;
+            font-size: 20px;
+        }
+
+        .brand .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, var(--primary), var(--primary2));
+            box-shadow: 0 8px 20px rgba(91, 124, 255, .35);
+        }
+
+        .headline {
+            margin: 14px 0 8px;
+            font-size: 34px;
+            line-height: 1.15;
+            letter-spacing: -.6px;
+        }
+
+        .sub {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.6;
+            max-width: 40ch;
+        }
+
+        .tip {
+            margin-top: 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, .6);
+            border: 1px solid rgba(255, 255, 255, .65);
+            width: fit-content;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .tip .bulb {
+            width: 34px;
+            height: 34px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            background: rgba(91, 124, 255, .12);
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* 일러스트 자리 */
+        .illus {
+            margin-top: 18px;
+            height: 250px;
+            border-radius: 22px;
+            background:
+                radial-gradient(220px 160px at 65% 35%, rgba(255, 255, 255, .9), rgba(255, 255, 255, .35)),
+                linear-gradient(145deg, rgba(255, 255, 255, .45), rgba(255, 255, 255, .15));
+            border: 1px solid rgba(255, 255, 255, .55);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .illus::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(180px 140px at 70% 60%, rgba(91, 124, 255, .18), transparent 60%),
+                radial-gradient(200px 160px at 40% 40%, rgba(240, 184, 255, .18), transparent 60%);
+            pointer-events: none;
+        }
+
+
+
+        .illus img {
+            position: absolute;
+            right: 18px;
+            bottom: 0;
+            width: 250px;
+            max-width: 70%;
+            height: auto;
+            filter: drop-shadow(0 18px 30px rgba(30, 60, 120, .18));
+            opacity: .98;
+        }
+
+        /* 오른쪽 로그인 폼 */
+        .card {
+            padding: 28px 28px 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 480px;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: 800;
+            margin: 0 0 6px;
+        }
+
+        .desc {
+            margin: 0 0 18px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            color: var(--muted);
+            margin: 14px 0 8px;
+        }
+
+        .input {
             width: 100%;
+            padding: 13px 14px;
+            border-radius: 14px;
+            border: 1px solid rgba(31, 42, 68, .10);
+            background: rgba(255, 255, 255, .75);
+            outline: none;
+            transition: .15s ease;
+            font-size: 14px;
         }
 
-        td {
-            padding: 5px;
+        .input:focus {
+            border-color: rgba(91, 124, 255, .55);
+            box-shadow: 0 0 0 4px rgba(91, 124, 255, .14);
+            background: rgba(255, 255, 255, .9);
         }
 
-        .label {
-            width: 80px;
-            text-align: right;
+        .row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 14px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .btn {
+            margin-top: 18px;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            padding: 13px 14px;
+            border-radius: 14px;
+            font-weight: 800;
+            letter-spacing: .2px;
+            color: white;
+            background: linear-gradient(135deg, var(--primary), var(--primary2));
+            box-shadow: 0 14px 30px rgba(91, 124, 255, .28);
+            transition: .15s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .or {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 18px 0 10px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .or::before,
+        .or::after {
+            content: "";
+            height: 1px;
+            flex: 1;
+            background: rgba(31, 42, 68, .10);
+        }
+
+        .social {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social a {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            padding: 10px 12px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, .75);
+            border: 1px solid rgba(31, 42, 68, .08);
+            color: var(--text);
+            font-weight: 700;
+            font-size: 13px;
+            transition: .15s ease;
+        }
+
+        .social a:hover {
+            border-color: rgba(91, 124, 255, .35);
+            box-shadow: 0 10px 22px rgba(30, 60, 120, .10);
+            transform: translateY(-1px);
+        }
+
+        .foot {
+            margin-top: 16px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .foot a {
+            color: var(--primary);
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        /* 반응형 */
+        @media (max-width: 860px) {
+            .wrap {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: 320px;
+            }
+
+            .card {
+                min-height: unset;
+            }
+
+            .illus {
+                height: 200px;
+            }
         }
     </style>
 </head>
 
 <body>
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
 
-<form action="/mini_project01/src/pages/login/login_process.php" method="post">
-    <fieldset id="f1">
-        <legend>로그인</legend>
+    <div class="wrap">
+        <section class="panel hero">
+            <div>
+                <div class="brand">
+                    <span class="dot"></span>
+                    <span>DevNest</span>
+                </div>
 
-        <table>
-            <tr>
-                <td class="label">ID :</td>
-                <td>
-                    <input type="text" name="email" >
-                </td>
-            </tr>
+                <h1 class="headline">다시 돌아오신 것을<br />환영해요!</h1>
+                <p class="sub">기나긴 하루였죠? 로그인하고 오늘도 한 걸음씩 개발을 이어가봐요.</p>
 
-            <tr>
-                <td class="label">PW :</td>
-                <td>
-                    <input type="password" name="pw" >
-                </td>
-            </tr>
+                <div class="tip">
+                    <span class="bulb">💡</span>
+                    <!-- 추후 자동으로 날짜를 확인해서 바뀌게 구현 예정-->
+                    <span><b>오늘의 한 줄</b> · 딱 하나의 기능만 완성해도 성공!</span>
+                </div>
+            </div>
 
-            <tr>
-                <td></td>
-                <td>
-                    <input type="submit" value="로그인">
-                </td>
-            </tr>
-        </table>
+            <div class="illus">
 
-    </fieldset>
-</form>
+                <img src="/mini_project01/public/images/imgPenguin.png" alt="penguin" />
+            </div>
+        </section>
 
+        <section class="panel card">
+            <h2 class="title">로그인</h2>
+            <p class="desc">이메일과 비밀번호를 입력해 주세요.</p>
+
+            <!--action / method 유지 -->
+            <form action="/mini_project01/src/pages/login/login_process.php" method="post">
+                <label for="email">이메일</label>
+                <input class="input" id="email" type="text" name="email" placeholder="이메일을 입력해주세요"
+                    autocomplete="username" />
+
+                <label for="pw">비밀번호</label>
+                <input class="input" id="pw" type="password" name="pw" placeholder="비밀번호를 입력해주세요"
+                    autocomplete="current-password" />
+
+                <div class="row">
+                    <label style="margin:0; display:flex; gap:8px; align-items:center;">
+                        <input type="checkbox" /> 로그인 상태 유지
+                    </label>
+                    <!-- 추후 아이디/비번 찾기 구현 예정-->
+                    <span style="opacity:.9;">아이디/비밀번호 찾기</span>
+                </div>
+
+                <button class="btn" type="submit">로그인</button>
+
+                <!-- 추후 google , github 로 간편 로그인 기능 구현 예정-->
+                <div class="or">또는</div>
+                <div class="social">
+                    <a href="#" class="social-btn google" aria-label="Google login">
+                        <img src="/mini_project01/public/images/google-icon.png" alt="Google 로그인">
+                        <span>Google</span>
+                    </a>
+
+                    <a href="#" class="social-btn github" aria-label="GitHub login">
+                        <img src="/mini_project01/public/images/github-icon.png" alt="GitHub 로그인">
+                        <span>GitHub</span>
+                    </a>
+                </div>
+
+                <div class="foot"> 아직 계정이 없으신가요? <a href="/mini_project01/src/pages/join/join.html">회원가입</a>
+                </div>
+            </form>
+        </section>
+    </div>
 </body>
 </html>
