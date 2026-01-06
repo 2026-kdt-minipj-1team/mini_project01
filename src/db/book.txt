@@ -1,0 +1,21 @@
+
+--
+-- 데이터베이스: `book`
+--
+
+-- --------------------------------------------------------
+
+--
+-- 테이블 구조 `bookmark`
+--
+
+CREATE TABLE `bookmark` (
+  `sitename` varchar(40) DEFAULT NULL,
+  `site` varchar(40) DEFAULT NULL,
+  `image_path` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
