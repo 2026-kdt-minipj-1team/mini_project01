@@ -46,8 +46,8 @@ function aria_current($needles, $uri) {
       </li>
 
       <li>
-        <a href="../setting/setting.html"
-           <?= aria_current(['/pages/setting/','/setting/setting.html'], $uri) ?>>
+        <a href="../setting/setting.php"
+           <?= aria_current(['/pages/setting/','/setting/setting.php'], $uri) ?>>
           설정
         </a>
       </li>
