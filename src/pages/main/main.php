@@ -1,12 +1,12 @@
 <?php include "../dailyquiz/dailyQuestion.php" ?>
 <?php include "../dailyquiz/useranswer.php" ?>
 <?php
-  require_once __DIR__ . "/../planner/calendarCard.php";
-  $y = (int)date("Y");
-  $m = (int)date("n");
+require_once __DIR__ . "/../planner/calendarCard.php";
+$y = (int) date("Y");
+$m = (int) date("n");
 ?>
 <?php
-session_start(); 
+session_start();
 
 if (!isset($_SESSION['email'])) {
     header("Location: ../login/login.html");
@@ -117,7 +117,8 @@ if (!isset($_SESSION['email'])) {
                         <h2>Daily Quiz</h2>
                         <p id="Quiz-sub-title">오늘의 Daily Quiz 는??</p>
                         <div>
-                            <p style="color:DodgerBlue;>">[문제종류] <strong> <?= $feorbe ?> </strong> </p> <!-- questions 테이블  question_number, questions_type 출력-->
+                            <p style="color:DodgerBlue;>">[문제종류] <strong> <?= $feorbe ?> </strong> </p>
+                            <!-- questions 테이블  question_number, questions_type 출력-->
                             <p> <strong> <?= $qna['question'] ?> <strong> </p> <!-- questions 테이블 question 출력 -->
                             <form action="../dailyquiz/answer_process.php" method="post">
 
@@ -133,7 +134,7 @@ if (!isset($_SESSION['email'])) {
                             </form>
                         </div>
                     </article> <!-- 퀴즈 카드 article 종료 -->
-                    <article class="card" id="calendar">    <!-- 캘린더 카드 article  시작 -->
+                    <article class="card" id="calendar"> <!-- 캘린더 카드 article  시작 -->
                         <div class="card-head">
                             <h2>달력 및 일정관리</h2>
                         </div>
@@ -141,7 +142,7 @@ if (!isset($_SESSION['email'])) {
                         <div class="mini-cal-wrap">
                             <?php //genCalendar($y, $m, 'mini'); ?>
                         </div>
-                    </article>                              <!-- 캘린더 카드 article 종료 -->
+                    </article> <!-- 캘린더 카드 article 종료 -->
                 </section> <!-- row-bottom section 종료 -->
             </div>
         </main>
