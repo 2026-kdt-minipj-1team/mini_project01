@@ -29,25 +29,7 @@
 <body>
     <div class="layout">
         <!-- ------------------------ 왼쪽 사이드바 ------------------------ -->
-        <aside class="sidebar" aria-label="사이드 메뉴"> <!-- aside 시작 -->
-            <h1 class="logo">
-                <a href="../main/main.php">DevNest</a>
-            </h1>
-
-            <nav class="nav">
-                <ul>
-                    <li><a href="../main/main.php">대시보드</a></li>
-                    <li><a href="../planner/planner.php">일정관리</a></li>
-                    <li><a href="../bookmark/bookmark.html">북마크</a></li>
-                    <li><a href="../dailyquiz/dailyquiz.html" aria-current="page">데일리 퀴즈</a></li>
-                    <li><a href="../setting/setting.php">설정</a></li>
-                </ul>
-            </nav>
-
-            <div class="sidebar-footer">
-                <a href="../login/login.html">로그아웃</a>
-            </div>
-        </aside> <!-- aside 종료 -->
+        <?php include __DIR__ . "/../../commons/sidebar/sidebar.php"; ?>
 
         <!-- ------------------------ 메인 콘텐츠 ------------------------ -->
         <main>
