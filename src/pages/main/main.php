@@ -1,3 +1,39 @@
+
+<?php
+$dbconn = mysqli_connect('localhost', 'root', '');
+mysqli_select_db($dbconn, 'devnest');
+
+// 북마크 추가 처리
+if (isset($_POST['site'])) {
+    $site = trim($_POST['site']);
+    $sitename = trim($_POST['sitename']);
+    $images = $_FILES['image'];
+
+        $dir = '../../../public/images/';
+        $file_name = basename($_FILES['image']['name']);
+        $imagepath = $dir . $file_name;
+
+            $query = "INSERT INTO bookmark (sitename, site, image_path) VALUES ('$sitename', '$site', '$imagepath')";
+            $result = mysqli_query($dbconn, $query);
+
+            // 이미지 업로드
+            move_uploaded_file($_FILES['image']['tmp_name'], $imagepath);
+        }
+    
+
+
+// 북마크 삭제 처리
+if (isset($_POST['delete_site'])) {
+    $delete_site = $_POST['delete_site'];
+
+    // DB에서 해당 사이트 삭제
+    $delete_query = "DELETE FROM bookmark WHERE site = '$delete_site'";
+    mysqli_query($dbconn, $delete_query);
+}
+
+// DB에서 모든 북마크 출력
+$end = mysqli_query($dbconn, "SELECT * FROM bookmark");
+?>
 <?php include "../dailyquiz/dailyQuestion.php" ?>
 <?php include "../dailyquiz/useranswer.php" ?>
 <?php
@@ -39,6 +75,45 @@ if (!isset($_SESSION['email'])) {
             document.getElementById("input").style.display = "block";
         }
     </script>
+    <style>
+
+         .bookmark-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 250px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+      .bookmark-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .bookmark-item a {
+            text-decoration: none;
+            color: #0073e6;
+            font-weight: bold;
+        }
+
+        .bookmark-item a:hover {
+            text-decoration: underline;
+        }
+
+        .bookmark-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        </style>
 </head>
 
 <body>
@@ -111,6 +186,19 @@ if (!isset($_SESSION['email'])) {
                 <section class="row-bottom"> <!-- row-bottom section 시작 -->
                     <article class="card" id="bookmark"> <!-- 북마크 카드 article 시작 -->
                         <h2>Bookmarks</h2>
+ 
+                        <div class="bookmark-container">
+                    <?php
+                    // DB에서 모든 북마크 출력
+                    while ($row = mysqli_fetch_assoc($end)) {
+                        echo "<div class='bookmark-item'>";
+                        echo "<a href='{$row['site']}' target='_blank'>";
+                        echo "<img src='{$row['image_path']}' alt='대표 이미지'>{$row['sitename']}</a>";
+                        echo "</div>";
+                    }
+                    ?>
+                </div>
+                
                         <!-- 아이콘들 -->
                     </article> <!-- 북마크 카드 article 종료 -->
                     <article class="card" id="Quiz" aria-label="오늘의 문제"> <!-- 퀴즈 카드 article 시작 -->
