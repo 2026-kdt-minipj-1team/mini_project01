@@ -38,8 +38,8 @@
                 <ul>
                     <li><a href="../main/main.php">대시보드</a></li>
                     <li><a href="../planner/planner.php">일정관리</a></li>
-                    <li><a href="../bookmark/bookmark.html">북마크</a></li>
-                    <li><a href="../dailyquiz/dailyquiz.html" aria-current="page">데일리 퀴즈</a></li>
+                    <li><a href="../bookmark/book.html">북마크</a></li>
+                    <li><a href="../dailyquiz/dailyquiz.php" aria-current="page">데일리 퀴즈</a></li>
                     <li><a href="../setting/setting.php">설정</a></li>
                 </ul>
             </nav>
