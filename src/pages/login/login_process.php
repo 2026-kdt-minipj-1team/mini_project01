@@ -28,14 +28,14 @@ if (!isset($_SESSION['userid'])) {
        mysqli_select_db($abcon, 'devnest');
 
        //쿼리 생성 및 전송
-        $query = "select * from users where email = '$email'";
+        $query = "select * from users where id = '$email'";
         $result = mysqli_query($abcon, $query);
         $row = mysqli_fetch_array($result);
 
        //변환값 출력
         if ($row) {
             if ($row['pw'] === $pw) {
-                $_SESSION['userid'] = $row['email'];
+                $_SESSION['userid'] = $row['id'];
                 echo "로그인 성공하였습니다.";
                 header("Location: ../main/main.php");
             } else {
