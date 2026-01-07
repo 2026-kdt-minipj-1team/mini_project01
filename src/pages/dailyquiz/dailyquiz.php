@@ -85,6 +85,7 @@
                                                     q.question_number,
                                                     q.question_type,
                                                     q.question,
+                                                    q.official_answer,
                                                     ua.user_answer
                                                 FROM questions q
                                                 LEFT JOIN user_answers ua
@@ -104,6 +105,12 @@
                                         }
 
                                         echo "<strong>" . $row['question'] . "</strong><br>";
+
+                                        if ($row['official_answer'] !== null) {
+                                            echo "<span style='color:#6A89EC;'>  공식 답변: <strong> " . $row['official_answer'] . "</strong> </span> <br>";
+                                        } else {
+                                            echo "<span style='color:#666666'>공식 답변 없음 </span> <br>";
+                                        }
 
                                         if ($row['user_answer'] !== null) {
                                             echo "<span style='color:RoyalBlue;'>  내 답변: <strong> " . $row['user_answer'] . "</strong> </span> <br>";
