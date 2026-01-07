@@ -1,5 +1,10 @@
 <?php
 session_start(); 
+
+if (!isset($_SESSION['userid'])) {
+    header("Location: ../login/login.html");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -32,17 +37,21 @@ session_start();
             if ($row['pw'] === $pw) {
                 $_SESSION['userid'] = $row['id'];
                 echo "로그인 성공하였습니다.";
+                header("Location: ../main/main.php");
             } else {
                 echo "오류가 발생했습니다.";
+                header("Location: ../login/login.html");
             }
             } else {
                 echo "오류가 발생했습니다.";
+                header("Location: ../login/login.html");
+                
         }
 
        //db연결 해제
        mysqli_close($abcon);
     ?>
-    <meta http-equiv = "refresh" content="3; url = '../main/main.php'">
+    
 </body>
 
 </html>

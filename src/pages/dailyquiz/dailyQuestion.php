@@ -3,6 +3,7 @@
     $dbcon = mysqli_connect('localhost', 'root', '');
 
     mysqli_select_db($dbcon, 'devnest');
+    mysqli_set_charset($dbcon, 'utf8mb4');
 
     $query = "select * from questions order by rand() limit 1";
 

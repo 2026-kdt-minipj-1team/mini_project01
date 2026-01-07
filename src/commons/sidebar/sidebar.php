@@ -55,6 +55,6 @@ function aria_current($needles, $uri) {
   </nav>
 
   <div class="sidebar-footer">
-    <a href="../login/login.php">로그아웃</a>
+    <a href="../login/login.html">로그아웃</a>
   </div>
-</aside>
+</aside>  
