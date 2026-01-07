@@ -1,5 +1,10 @@
 <?php include "../dailyquiz/dailyQuestion.php" ?>
 <?php include "../dailyquiz/useranswer.php" ?>
+<?php
+  require_once __DIR__ . "/../planner/calendarCard.php";
+  $y = (int)date("Y");
+  $m = (int)date("n");
+?>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -19,6 +24,7 @@
 
     <!-- -------------------- main 페이지 전용 js, CSS -------------------- -->
     <link rel="stylesheet" href="./main.css" /> <!-- main 페이지 전용 CSS -->
+    <link rel="stylesheet" href="../planner/planner.css" />
     <script src="./main.js" defer></script> <!-- main 페이지 전용 JS -->
     <script>
         function show() {
@@ -30,25 +36,7 @@
 <body>
     <div class="layout">
         <!-- ------------------------ 왼쪽 사이드바 ------------------------ -->
-        <aside class="sidebar" aria-label="사이드 메뉴"> <!-- aside 시작 -->
-            <h1 class="logo">
-                <a href="../main/main.html">DevNest</a>
-            </h1>
-
-            <nav class="nav">
-                <ul>
-                    <li><a href="../main/main.html" aria-current="page">대시보드</a></li>
-                    <li><a href="../planner/planner.html">일정관리</a></li>
-                    <li><a href="../bookmark/bookmark.html">북마크</a></li>
-                    <li><a href="../dailyquiz/dailyquiz.php">데일리 퀴즈</a></li>
-                    <li><a href="../setting/setting.html">설정</a></li>
-                </ul>
-            </nav>
-
-            <div class="sidebar-footer">
-                <a href="../login/login.html">로그아웃</a>
-            </div>
-        </aside> <!-- aside 종료 -->
+        <?php include __DIR__ . "/../../commons/sidebar/sidebar.php"; ?>
 
         <!-- ------------------------ 메인 콘텐츠 ------------------------ -->
         <main>
@@ -61,10 +49,10 @@
                 </form>
 
                 <div class="top-actions">
-                    <a href="../setting/setting.html" aria-label="메세지">✉️</a>
+                    <a href="" aria-label="메세지">✉️</a>
                     <button type="button" aria-label="알림">🔔</button>
-                    <a href="../setting/setting.html" aria-label="설정">⚙️</a>
-                    <a href="../setting/setting.html" aria-label="프로필">👤</a>
+                    <a href="" aria-label="설정">⚙️</a>
+                    <a href="" aria-label="프로필">👤</a>
                 </div>
             </header> <!-- header 종료 -->
             <br>
@@ -135,15 +123,17 @@
                                 <!-- Solve Now 버튼 -->
                                 <button type="button" onclick="show()">답변하기</button>
                             </form>
-
-
-
                         </div>
                     </article> <!-- 퀴즈 카드 article 종료 -->
-                    <article class="card" id="calendar"> <!-- 캘린더 카드 article 시작 -->
-                        <h2>달력 및 일정관리</h2>
-                        <!-- 캘린더 UI -->
-                    </article> <!-- 캘린더 카드 article 종료 -->
+                    <article class="card" id="calendar">    <!-- 캘린더 카드 article  시작 -->
+                        <div class="card-head">
+                            <h2>달력 및 일정관리</h2>
+                        </div>
+
+                        <div class="mini-cal-wrap">
+                            <?php //genCalendar($y, $m, 'mini'); ?>
+                        </div>
+                    </article>                              <!-- 캘린더 카드 article 종료 -->
                 </section> <!-- row-bottom section 종료 -->
             </div>
         </main>
