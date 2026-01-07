@@ -166,11 +166,11 @@ $end = mysqli_query($dbconn, "SELECT * FROM bookmark");
 
             <nav class="nav">
                 <ul>
-                    <li><a href="../main/main.html">대시보드</a></li>
-                    <li><a href="../planner/planner.html">일정관리</a></li>
-                    <li><a href="../bookmark/bookmark.php" aria-current="page">북마크</a></li>
-                    <li><a href="../dailyquiz/dailyquiz.html">데일리 퀴즈</a></li>
-                    <li><a href="../setting/setting.html">설정</a></li>
+                    <li><a href="../main/main.php">대시보드</a></li>
+                    <li><a href="../planner/planner.php">일정관리</a></li>
+                    <li><a href="../bookmark/book.php" aria-current="page">북마크</a></li>
+                    <li><a href="../dailyquiz/dailyquiz.php">데일리 퀴즈</a></li>
+                    <li><a href="../setting/setting.php">설정</a></li>
                 </ul>
             </nav>
 
