@@ -46,8 +46,8 @@ function aria_current($needles, $uri) {
       </li>
 
       <li>
-        <a href="../setting/setting.php"
-           <?= aria_current(['/pages/setting/','/setting/setting.php'], $uri) ?>>
+        <a href="../setting/setting.html"
+           <?= aria_current(['/pages/setting/','/setting/setting.html'], $uri) ?>>
           설정
         </a>
       </li>
@@ -57,4 +57,4 @@ function aria_current($needles, $uri) {
   <div class="sidebar-footer">
     <a href="../login/login.html">로그아웃</a>
   </div>
-</aside>
+</aside>  
