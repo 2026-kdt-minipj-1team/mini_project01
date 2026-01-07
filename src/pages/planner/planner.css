@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+#dashboard-cal{
+  width: 100%;
+}
+
+/* 캘린더 카드 */
+.calendar-card{
+  background: rgba(255,255,255,0.75);
+  border: 1px solid rgba(15,23,42,0.08);
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(2,6,23,0.08);
+  padding: 18px;
+  backdrop-filter: blur(10px);
+}
+
+/* 헤더 */
+.cal-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.cal-head-left{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+}
+.cal-title{
+  margin:0;
+  font-size: 28px;
+  font-weight: 900;
+}
+.cal-chip{
+  text-decoration:none;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(15,23,42,0.10);
+  background: rgba(255,255,255,0.7);
+  color:#111827;
+}
+.cal-nav{ display:flex; gap: 8px; }
+.cal-btn{
+  width: 34px;
+  height: 34px;
+  display:grid;
+  place-items:center;
+  border-radius: 10px;
+  border: 1px solid rgba(15,23,42,0.10);
+  background: rgba(255,255,255,0.7);
+  text-decoration:none;
+  color:#111827;
+}
+
+/* 요일: 7열 그리드 */
+.cal-week{
+  display:grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin: 10px 0;
+}
+.cal-weekday{
+  font-size: 12px;
+  color:#6b7280;
+  text-align:center;
+  font-weight: 700;
+}
+.cal-weekday.sun{ color:#ef4444; }
+.cal-weekday.sat{ color:#3b82f6; }
+
+/* 날짜: 7열 그리드 */
+.cal-grid{
+  display:grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+.cal-cell{
+  min-height: 92px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.65);
+  border: 1px solid rgba(15,23,42,0.06);
+  padding: 10px;
+}
+.cal-cell.muted{
+  background: rgba(255,255,255,0.25);
+  border: 1px dashed rgba(15,23,42,0.06);
+}
+.cal-cell.today{
+  outline: 2px solid rgba(59,130,246,0.55);
+}
+
+.cal-daynum{
+  font-size: 12px;
+  font-weight: 800;
+  color:#111827;
+}
+
+/* 일정 칩 */
+.chip{
+  margin-top: 6px;
+  padding: 6px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  width: fit-content;
+  max-width: 100%;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.chip-blue{ background: rgba(59,130,246,0.85); }
+.chip-green{ background: rgba(16,185,129,0.85); }
+.chip-red{ background: rgba(239,68,68,0.85); }

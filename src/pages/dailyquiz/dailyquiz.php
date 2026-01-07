@@ -37,10 +37,10 @@
             <nav class="nav">
                 <ul>
                     <li><a href="../main/main.php">대시보드</a></li>
-                    <li><a href="../planner/planner.html">일정관리</a></li>
+                    <li><a href="../planner/planner.php">일정관리</a></li>
                     <li><a href="../bookmark/bookmark.html">북마크</a></li>
                     <li><a href="../dailyquiz/dailyquiz.html" aria-current="page">데일리 퀴즈</a></li>
-                    <li><a href="../setting/setting.html">설정</a></li>
+                    <li><a href="../setting/setting.php">설정</a></li>
                 </ul>
             </nav>
 
@@ -60,10 +60,10 @@
                 </form>
 
                 <div class="top-actions">
-                    <a href="../setting/setting.html" aria-label="메세지">✉️</a>
+                    <a href="" aria-label="메세지">✉️</a>
                     <button type="button" aria-label="알림">🔔</button>
-                    <a href="../setting/setting.html" aria-label="설정">⚙️</a>
-                    <a href="../setting/setting.html" aria-label="프로필">👤</a>
+                    <a href="" aria-label="설정">⚙️</a>
+                    <a href="" aria-label="프로필">👤</a>
                 </div>
             </header> <!-- header 종료 -->
             <br>
