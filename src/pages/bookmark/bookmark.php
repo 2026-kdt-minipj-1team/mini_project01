@@ -1,7 +1,6 @@
-
 <?php
 $dbconn = mysqli_connect('localhost', 'root', '');
-mysqli_select_db($dbconn, 'book');
+mysqli_select_db($dbconn, 'devnest');
 
 // 북마크 추가 처리
 if (isset($_POST['site'])) {
@@ -159,25 +158,8 @@ $end = mysqli_query($dbconn, "SELECT * FROM bookmark");
 <body>
     <div class="layout">
         <!-- ------------------------ 왼쪽 사이드바 ------------------------ -->
-        <aside class="sidebar" aria-label="사이드 메뉴">
-            <h1 class="logo">
-                <a href="../main/main.php">DevNest</a>
-            </h1>
 
-            <nav class="nav">
-                <ul>
-                    <li><a href="../main/main.php">대시보드</a></li>
-                    <li><a href="../planner/planner.php">일정관리</a></li>
-                    <li><a href="../bookmark/book.php" aria-current="page">북마크</a></li>
-                    <li><a href="../dailyquiz/dailyquiz.php">데일리 퀴즈</a></li>
-                    <li><a href="../setting/setting.php">설정</a></li>
-                </ul>
-            </nav>
-
-            <div class="sidebar-footer">
-                <a href="../login/login.html">로그아웃</a>
-            </div>
-        </aside>
+        <?php include __DIR__ . "/../../commons/sidebar/sidebar.php"; ?>      
 
         <!-- ------------------------ 메인 콘텐츠 ------------------------ -->
         <main>
@@ -187,10 +169,10 @@ $end = mysqli_query($dbconn, "SELECT * FROM bookmark");
                     <input id="search" type="search" placeholder="Search..." />
                 </form>
                 <div class="top-actions">
-                    <a href="../setting/setting.html" aria-label="메세지">✉️</a>
-                    <button type="button" aria-label="알림">🔔</button>
-                    <a href="../setting/setting.html" aria-label="설정">⚙️</a>
-                    <a href="../setting/setting.html" aria-label="프로필">👤</a>
+                    <a href="../setting/setting.php" aria-label="메세지">✉️</a>
+                    <a href="../setting/setting.php"  aria-label="알림">🔔</button>
+                    <a href="../setting/setting.php" aria-label="설정">⚙️</a>
+                    <a href="../setting/setting.php" aria-label="프로필">👤</a>
                 </div>
             </header>
 
@@ -223,5 +205,8 @@ $end = mysqli_query($dbconn, "SELECT * FROM bookmark");
         </main>
     </div>
 </body>
+<!-- -->
+
+
 
 </html>
