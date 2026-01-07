@@ -28,7 +28,7 @@ body {
         radial-gradient(1200px 600px at 12% 10%, var(--bg2), transparent 60%),
         radial-gradient(900px 500px at 88% 30%, var(--bg1), transparent 55%),
         linear-gradient(120deg, #f6fbff, #fff);
-    overflow: hidden;
+    overflow: auto;
 }
 
 .panel {
@@ -111,8 +111,8 @@ body {
     position: absolute;
     right: 16px;
     bottom: 0;
-    width: 240px;
-    max-width: 75%;
+    width: 100%;
+    max-width: 240px;
     height: auto;
     filter: drop-shadow(0 18px 30px rgba(30, 60, 120, .18));
 }
