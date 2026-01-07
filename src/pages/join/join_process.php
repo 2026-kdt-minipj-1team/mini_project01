@@ -37,7 +37,7 @@
         mysqli_close($abcon);
         ?>
         <!-- 가입이 완료되면 로그인 페이지로 넘어가게-->
-        <meta http-equiv = "refresh" content="3; url = '/mini_project01/src/pages/login/login.html'">
+        <meta http-equiv = "refresh" content="3; url = '../login/login.html'">
 </body>
 
 </html>
