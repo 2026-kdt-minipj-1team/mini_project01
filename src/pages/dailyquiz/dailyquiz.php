@@ -29,25 +29,7 @@
 <body>
     <div class="layout">
         <!-- ------------------------ 왼쪽 사이드바 ------------------------ -->
-        <aside class="sidebar" aria-label="사이드 메뉴"> <!-- aside 시작 -->
-            <h1 class="logo">
-                <a href="../main/main.html">DevNest</a>
-            </h1>
-
-            <nav class="nav">
-                <ul>
-                    <li><a href="../main/main.php">대시보드</a></li>
-                    <li><a href="../planner/planner.html">일정관리</a></li>
-                    <li><a href="../bookmark/bookmark.html">북마크</a></li>
-                    <li><a href="../dailyquiz/dailyquiz.html" aria-current="page">데일리 퀴즈</a></li>
-                    <li><a href="../setting/setting.html">설정</a></li>
-                </ul>
-            </nav>
-
-            <div class="sidebar-footer">
-                <a href="../login/login.html">로그아웃</a>
-            </div>
-        </aside> <!-- aside 종료 -->
+        <?php include __DIR__ . "/../../commons/sidebar/sidebar.php"; ?>
 
         <!-- ------------------------ 메인 콘텐츠 ------------------------ -->
         <main>
@@ -60,10 +42,10 @@
                 </form>
 
                 <div class="top-actions">
-                    <a href="../setting/setting.html" aria-label="메세지">✉️</a>
+                    <a href="" aria-label="메세지">✉️</a>
                     <button type="button" aria-label="알림">🔔</button>
-                    <a href="../setting/setting.html" aria-label="설정">⚙️</a>
-                    <a href="../setting/setting.html" aria-label="프로필">👤</a>
+                    <a href="" aria-label="설정">⚙️</a>
+                    <a href="" aria-label="프로필">👤</a>
                 </div>
             </header> <!-- header 종료 -->
             <br>
@@ -75,7 +57,7 @@
                         <div id="welcome-inner">
                             <div id="welcome-text">
                                 <h1>데일리 퀴즈 모음</h1>
-                                <p>오늘도 한 걸음씩 성장해요!!</p>
+                                <p>오늘도 한 걸음씩 성장해요!!</p> <br><br>
                                 <div>
                                     <?php
                                     $dbcon = mysqli_connect('localhost', 'root', '', 'devnest');
@@ -85,6 +67,7 @@
                                                     q.question_number,
                                                     q.question_type,
                                                     q.question,
+                                                    q.official_answer,
                                                     ua.user_answer
                                                 FROM questions q
                                                 LEFT JOIN user_answers ua
@@ -95,20 +78,26 @@
 
                                     while ($row = mysqli_fetch_assoc($result)) {
 
-                                        echo "문제번호: " . $row['question_number'] . "<br>";
+                                        echo "<span style='color:DodgerBlue;'> <strong> 문제번호:  " . $row['question_number'] . "</strong></span> <br>";
 
                                         if ((int) $row['question_type'] === 1) {
-                                            echo "백엔드<br>";
+                                            echo "<span style='color:MediumSeaGreen'>백엔드</span> <br>";
                                         } else {
-                                            echo "프론트엔드<br>";
+                                            echo "<span style='color:DarkOrange'>프론트엔드</span> <br>";
                                         }
 
                                         echo "<strong>" . $row['question'] . "</strong><br>";
 
-                                        if ($row['user_answer'] !== null) {
-                                            echo "내 답변: " . $row['user_answer'] . "<br>";
+                                        if ($row['official_answer'] !== null) {
+                                            echo "<span style='color:#6A89EC;'>  공식 답변: <strong> " . $row['official_answer'] . "</strong> </span> <br>";
                                         } else {
-                                            echo "아직 답변 없음<br>";
+                                            echo "<span style='color:#666666'>공식 답변 없음 </span> <br>";
+                                        }
+
+                                        if ($row['user_answer'] !== null) {
+                                            echo "<span style='color:RoyalBlue;'>  내 답변: <strong> " . $row['user_answer'] . "</strong> </span> <br>";
+                                        } else {
+                                            echo "<span style='color:#666666'>아직 답변 없음 </span> <br>";
                                         }
 
                                         echo "<hr>";

@@ -41,9 +41,11 @@
 .row-bottom{
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: auto auto;
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
   gap: 20px;
   align-items: stretch;
+  height: calc(100vh - 180px);
+  min-height: 520px;
 }
 
 /* 북마크: 왼쪽 위 */
@@ -197,4 +199,34 @@
   text-align: center;
   margin: 5%;
   padding: 4% 4%;
+}
+
+/* 메인에 들어가는 작은 달력 */
+.mini-cal-wrap .cal.cal-mini .cal-title{
+  font-size: 18px;
+}
+.mini-cal-wrap .cal.cal-mini .cal-chip{
+  padding: 4px 8px;
+  font-size: 11px;
+}
+.mini-cal-wrap .cal.cal-mini .cal-btn{
+  width: 10px;
+  height: 10px;
+}
+
+.mini-cal-wrap .cal.cal-mini .cal-week{
+  gap: 6px;
+}
+.mini-cal-wrap .cal.cal-mini .cal-grid{
+  gap: 6px;
+}
+
+.mini-cal-wrap .cal.cal-mini .cal-cell{
+  min-height: 46px;
+  padding: 6px;
+  border-radius: 12px;
+}
+
+.mini-cal-wrap .cal.cal-mini .cal-daynum{
+  font-size: 11px;
 }

@@ -1,48 +1,41 @@
 <?php
-session_start(); 
-?>
+session_start();
 
-<!DOCTYPE html>
-<html>
+$email = $_POST['email'];
+$pw    = $_POST['pw'];
 
-<head>
-    <title>미니프로젝트(26.01.05 ~ 26.01.07)</title>
-    <meta charset="utf-8">
-    
-</head>
+// DB 연결
+$abcon = mysqli_connect('localhost', 'root', '');
+if (!$abcon) {
+    die('DB 연결 실패');
+}
 
-<body>
-    <?php
-        $email = $_POST['email'];
-        $pw =  $_POST['pw'];
+// DB 선택
+mysqli_select_db($abcon, 'devnest');
 
-        //db연결
-        $abcon = mysqli_connect('localhost' , 'root' , '');
+// 사용자 조회
+$query = "SELECT * FROM users WHERE email = '$email'";
+$result = mysqli_query($abcon, $query);
 
-       //db 선택 수정
-       mysqli_select_db($abcon, 'devnest');
+// 쿼리 실패 방어
+if (!$result) {
+    die('쿼리 오류');
+}
 
-       //쿼리 생성 및 전송
-        $query = "select * from users where email = '$email'";
-        $result = mysqli_query($abcon, $query);
-        $row = mysqli_fetch_array($result);
+$row = mysqli_fetch_array($result);
 
-       //변환값 출력
-        if ($row) {
-            if ($row['pw'] === $pw) {
-                $_SESSION['userid'] = $row['email'];
-                echo "로그인 성공하였습니다.";
-            } else {
-                echo "오류가 발생했습니다.";
-            }
-            } else {
-                echo "오류가 발생했습니다.";
-        }
+// 로그인 판단
+if ($row && $row['pw'] == $pw) {
+    // ✅ 로그인 성공
+    $_SESSION['email'] = $row['email'];
 
-       //db연결 해제
-       mysqli_close($abcon);
-    ?>
-    <meta http-equiv = "refresh" content="3; url = '/mini_project01/src/pages/main/main.html'">
-</body>
+    header("Location: ../main/main.php");
+    exit;
+} else {
+    // ❌ 로그인 실패
+    header("Location: ../login/login.html");
+    exit;
+}
 
-</html>
+// DB 종료
+mysqli_close($abcon);
