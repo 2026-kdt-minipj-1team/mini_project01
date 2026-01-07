@@ -47,7 +47,7 @@ a {
 .layout {
     display: flex;
     min-height: 98vh;
-    max-width: 1800px;
+    max-width: 2000px;
     margin: auto;
     border-radius: 20px;
     background: radial-gradient(1200px 600px at 30% 20%,
