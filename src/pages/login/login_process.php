@@ -1,57 +1,41 @@
 <?php
-session_start(); 
+session_start();
 
-if (!isset($_SESSION['userid'])) {
+$email = $_POST['email'];
+$pw    = $_POST['pw'];
+
+// DB 연결
+$abcon = mysqli_connect('localhost', 'root', '');
+if (!$abcon) {
+    die('DB 연결 실패');
+}
+
+// DB 선택
+mysqli_select_db($abcon, 'devnest');
+
+// 사용자 조회
+$query = "SELECT * FROM users WHERE email = '$email'";
+$result = mysqli_query($abcon, $query);
+
+// 쿼리 실패 방어
+if (!$result) {
+    die('쿼리 오류');
+}
+
+$row = mysqli_fetch_array($result);
+
+// 로그인 판단
+if ($row && $row['pw'] == $pw) {
+    // ✅ 로그인 성공
+    $_SESSION['email'] = $row['email'];
+
+    header("Location: ../main/main.php");
+    exit;
+} else {
+    // ❌ 로그인 실패
     header("Location: ../login/login.html");
     exit;
 }
-?>
 
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>미니프로젝트(26.01.05 ~ 26.01.07)</title>
-    <meta charset="utf-8">
-    
-</head>
-
-<body>
-    <?php
-        $email = $_POST['email'];
-        $pw =  $_POST['pw'];
-
-        //db연결
-        $abcon = mysqli_connect('localhost' , 'root' , '');
-
-       //db 선택 수정
-       mysqli_select_db($abcon, 'devnest');
-
-       //쿼리 생성 및 전송
-        $query = "select * from users where id = '$email'";
-        $result = mysqli_query($abcon, $query);
-        $row = mysqli_fetch_array($result);
-
-       //변환값 출력
-        if ($row) {
-            if ($row['pw'] === $pw) {
-                $_SESSION['userid'] = $row['id'];
-                echo "로그인 성공하였습니다.";
-                header("Location: ../main/main.php");
-            } else {
-                echo "오류가 발생했습니다.";
-                header("Location: ../login/login.html");
-            }
-            } else {
-                echo "오류가 발생했습니다.";
-                header("Location: ../login/login.html");
-                
-        }
-
-       //db연결 해제
-       mysqli_close($abcon);
-    ?>
-    
-</body>
-
-</html>
+// DB 종료
+mysqli_close($abcon);

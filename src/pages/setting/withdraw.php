@@ -32,6 +32,7 @@
     <div class="layout">
         <!-- ------------------------ 왼쪽 사이드바 ------------------------ -->
         <?php include __DIR__ . "/../../commons/sidebar/sidebar.php"; ?>
+
         <!-- ------------------------ 메인 콘텐츠 ------------------------ -->
         <main>
             <!-- 탑바 -->
@@ -52,63 +53,7 @@
             <br>
 
             <link rel="stylesheet" href="./setting.css">
-            <h1>설정</h1>
-
-            <!-- 일반 -->
-            <section class="card">
-                <h3>일반</h3>
-
-                <div class="row">
-                    <label>언어</label>
-                    <select>
-                        <option>한국어</option>
-                        <option>English</option>
-                    </select>
-                </div>
-
-                <div class="row">
-                    <label>글자 크기</label>
-                    <select>
-                        <option>작게</option>
-                        <option selected>보통</option>
-                        <option>크게</option>
-                    </select>
-                </div>
-            </section>
-
-            <!-- 알림 -->
-            <section class="card">
-                <h3>알림</h3>
-
-                <div class="row">
-                    <label>
-                        <input type="checkbox">
-                        알림 받기
-                    </label>
-                </div>
-
-                <div class="row">
-                    <label>퀴즈 알림 시간</label>
-                    <input type="time">
-                </div>
-
-                <div class="row">
-                    <label>일정 알림 시간</label>
-                    <input type="time">
-                </div>
-            </section>
-
-            <!-- 계정 -->
-            <section class="card">
-                <h3>계정</h3>
-
-                <div class="row">
-                    <button onclick="location.href='password_change.php'">비밀번호 변경</button>
-                </div><br>
-
-                <div class="row danger">
-                    <button onclick="location.href='withdraw.php'">회원 탈퇴</button>
-                </div>
+           
             </section>
 
         </main>

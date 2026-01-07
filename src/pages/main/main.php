@@ -5,6 +5,14 @@
   $y = (int)date("Y");
   $m = (int)date("n");
 ?>
+<?php
+session_start(); 
+
+if (!isset($_SESSION['email'])) {
+    header("Location: ../login/login.html");
+    exit;
+}
+?>
 
 <!DOCTYPE html>
 <html lang="ko">
