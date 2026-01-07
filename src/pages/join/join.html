@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DevNest - 회원가입</title>
+
+  <style>
+    :root {
+      --bg1: #e8f0ff;
+      --bg2: #f9ecff;
+      --card: rgba(255, 255, 255, .72);
+      --stroke: rgba(255, 255, 255, .55);
+      --text: #1f2a44;
+      --muted: #6b7a99;
+      --primary: #5b7cff;
+      --primary2: #79c0ff;
+      --shadow: 0 20px 60px rgba(30, 60, 120, .18);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", Arial, sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background:
+        radial-gradient(1200px 600px at 12% 10%, var(--bg2), transparent 60%),
+        radial-gradient(900px 500px at 88% 30%, var(--bg1), transparent 55%),
+        linear-gradient(120deg, #f6fbff, #fff);
+      overflow: hidden;
+    }
+
+    .panel {
+      width: min(920px, 100%);
+      border-radius: var(--radius);
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+    }
+
+    .side {
+      padding: 30px;
+      background:
+        radial-gradient(900px 520px at 30% 20%, rgba(91, 124, 255, .18), transparent 60%),
+        radial-gradient(900px 520px at 70% 85%, rgba(240, 184, 255, .18), transparent 55%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      font-weight: 800;
+      letter-spacing: .2px;
+      font-size: 20px;
+    }
+
+    .brand .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, var(--primary), var(--primary2));
+      box-shadow: 0 8px 20px rgba(91, 124, 255, .35);
+    }
+
+    .side h1 {
+      margin: 10px 0 6px;
+      font-size: 30px;
+      letter-spacing: -.5px;
+      line-height: 1.15;
+    }
+
+    .side p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 38ch;
+    }
+
+    .illus {
+      height: 230px;
+      border-radius: 22px;
+      background:
+        radial-gradient(220px 160px at 65% 35%, rgba(255, 255, 255, .9), rgba(255, 255, 255, .35)),
+        linear-gradient(145deg, rgba(255, 255, 255, .45), rgba(255, 255, 255, .15));
+      border: 1px solid rgba(255, 255, 255, .55);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .illus::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(180px 140px at 70% 60%, rgba(91, 124, 255, .18), transparent 60%),
+        radial-gradient(200px 160px at 40% 40%, rgba(240, 184, 255, .18), transparent 60%);
+      pointer-events: none;
+    }
+
+    .illus img {
+      position: absolute;
+      right: 16px;
+      bottom: 0;
+      width: 240px;
+      max-width: 75%;
+      height: auto;
+      filter: drop-shadow(0 18px 30px rgba(30, 60, 120, .18));
+    }
+
+    .form {
+      padding: 28px 30px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .title {
+      font-size: 22px;
+      font-weight: 800;
+      margin: 0 0 6px;
+    }
+
+    .desc {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .grid .full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin: 12px 0 8px;
+    }
+
+    .input {
+      width: 100%;
+      padding: 13px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(31, 42, 68, .10);
+      background: rgba(255, 255, 255, .75);
+      outline: none;
+      transition: .15s ease;
+      font-size: 14px;
+    }
+
+    .input:focus {
+      border-color: rgba(91, 124, 255, .55);
+      box-shadow: 0 0 0 4px rgba(91, 124, 255, .14);
+      background: rgba(255, 255, 255, .9);
+    }
+
+    .hint {
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .radioRow {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(31, 42, 68, .10);
+      background: rgba(255, 255, 255, .65);
+    }
+
+    .radioRow label {
+      margin: 0;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .btn {
+      margin-top: 16px;
+      width: 100%;
+      border: none;
+      cursor: pointer;
+      padding: 13px 14px;
+      border-radius: 14px;
+      font-weight: 800;
+      letter-spacing: .2px;
+      color: white;
+      background: linear-gradient(135deg, var(--primary), var(--primary2));
+      box-shadow: 0 14px 30px rgba(91, 124, 255, .28);
+      transition: .15s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .foot {
+      margin-top: 12px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .foot a {
+      color: var(--primary);
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    @media (max-width: 860px) {
+      .panel {
+        grid-template-columns: 1fr;
+      }
+
+      .side {
+        order: 2;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="panel">
+    <section class="side">
+      <div>
+        <div class="brand">
+          <span class="dot"></span>
+          <span>DevNest</span>
+        </div>
+        <h1>회원가입을 환영합니다!</h1>
+        <p>계정을 생성해서 쉽고 간편한 개발자 일정 관리를 시작해보세요.</p>
+      </div>
+
+      <div class="illus">
+        <img src="/mini_project01/public/images/imgPenguin.png" alt="penguin" />
+      </div>
+    </section>
+
+    <section class="form">
+      <h2 class="title">회원가입</h2>
+      <p class="desc">필수 항목을 입력하고 계정을 생성하세요.</p>
+
+      <!-- ✅ action / method 유지 -->
+      <form action="/mini_project01/src/pages/join/join_process.php" method="post">
+        <div class="grid">
+          <div class="full">
+            <label for="email">이메일(ID)</label>
+            <input class="input" id="email" type="text" name="email" required placeholder="이메일 주소를 입력해주세요" />
+            <div class="hint">이메일로 작성해주세요.</div>
+          </div>
+
+          <div class="full">
+            <label for="pw">비밀번호</label>
+            <input class="input" id="pw" type="password" name="pw" required placeholder="비밀번호를 입력해주세요" />
+          </div>
+
+          <div>
+            <label for="name">이름</label>
+            <input class="input" id="name" type="text" name="name" placeholder="이름" />
+          </div><br>
+
+          <div>
+            <label for="phone">전화번호</label>
+            <input class="input" id="phone" type="text" name="phone" placeholder="01012345678" />
+            <div class="hint">- 빼고 입력하세요.</div>
+          </div>
+
+          <div class="full">
+            <label>성별</label>
+            <div class="radioRow">
+              <label><input type="radio" name="gender" value="male" /> 남성</label>
+              <label><input type="radio" name="gender" value="female" /> 여성</label>
+            </div>
+          </div>
+
+          <div class="full">
+            <label for="birth">생년월일</label>
+            <input class="input" id="birth" type="text" name="birth" placeholder="ex) 001005" />
+          </div>
+        </div>
+
+        <button class="btn" type="submit">회원가입</button>
+
+        <div class="foot">
+          이미 계정이 있으신가요? <a href="/mini_project01/src/pages/login/login.html">로그인</a>
+        </div>
+      </form>
+    </section>
+  </div>
+</body>
+
+</html>
