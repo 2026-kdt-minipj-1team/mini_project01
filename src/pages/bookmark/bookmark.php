@@ -161,7 +161,7 @@ $end = mysqli_query($dbconn, "SELECT * FROM bookmark");
         <!-- ------------------------ 왼쪽 사이드바 ------------------------ -->
         <aside class="sidebar" aria-label="사이드 메뉴">
             <h1 class="logo">
-                <a href="../main/main.html">DevNest</a>
+                <a href="../main/main.php">DevNest</a>
             </h1>
 
             <nav class="nav">
