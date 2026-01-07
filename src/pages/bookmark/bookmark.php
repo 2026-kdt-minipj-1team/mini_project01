@@ -170,7 +170,7 @@ $end = mysqli_query($dbconn, "SELECT * FROM bookmark");
                     <li><a href="../planner/planner.php">일정관리</a></li>
                     <li><a href="../bookmark/bookmark.php" aria-current="page">북마크</a></li>
                     <li><a href="../dailyquiz/dailyquiz.php">데일리 퀴즈</a></li>
-                    <li><a href="../setting/setting.html">설정</a></li>
+                    <li><a href="../setting/setting.php">설정</a></li>
                 </ul>
             </nav>
 
