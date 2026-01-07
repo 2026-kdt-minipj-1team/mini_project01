@@ -161,14 +161,14 @@ $end = mysqli_query($dbconn, "SELECT * FROM bookmark");
         <!-- ------------------------ 왼쪽 사이드바 ------------------------ -->
         <aside class="sidebar" aria-label="사이드 메뉴">
             <h1 class="logo">
-                <a href="../main/main.html">DevNest</a>
+                <a href="../main/main.php">DevNest</a>
             </h1>
 
             <nav class="nav">
                 <ul>
                     <li><a href="../main/main.php">대시보드</a></li>
                     <li><a href="../planner/planner.php">일정관리</a></li>
-                    <li><a href="../bookmark/bookmark.php" aria-current="page">북마크</a></li>
+                    <li><a href="../bookmark/book.php" aria-current="page">북마크</a></li>
                     <li><a href="../dailyquiz/dailyquiz.php">데일리 퀴즈</a></li>
                     <li><a href="../setting/setting.php">설정</a></li>
                 </ul>
